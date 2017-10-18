@@ -18,3 +18,24 @@ module Lists =
         | _, [] -> None
         | 1, x :: _ -> Some x
         | k, _ :: xs -> element_at (k-1) xs
+
+    (*
+        This implementation is tail-recursive
+        and optimized by F# compiler to produce
+        constant stack size solution.
+
+        Other possible solution:
+
+        let rec len = function
+            | [] -> 0
+            | _ :: xs -> 1 + len xs
+
+        But this solution throws StackOverflowException
+        on huge lists.
+    *)
+    let len lst =
+        let rec aux n l =
+            match l with
+            | [] -> n
+            | _ :: xs -> aux (n+1) xs
+        aux 0 lst
