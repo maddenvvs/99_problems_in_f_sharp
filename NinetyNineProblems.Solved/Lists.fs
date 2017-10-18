@@ -57,6 +57,15 @@ module Lists =
             | Nested x :: xs -> aux (aux flat x) xs
         List.rev (aux [] lst)
 
+    (*
+        Other possible solution:
+
+        let rec compress = function
+            | x :: (y :: _ as xs) -> if x = y then compress xs else x :: compress xs
+            | l -> l
+
+        It looks clear but doesn't have tail recursion.
+    *)
     let compress lst =
         let rec aux acc = function
             | [] -> acc
