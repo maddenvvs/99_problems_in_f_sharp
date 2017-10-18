@@ -71,3 +71,19 @@ let ``Lists.len returns 3 if list contains three elements`` () =
 [<Fact>]
 let ``Lists.len returns correct result if list is large`` () =
     Assert.Equal(1000000, Lists.len [1..1000000])
+
+[<Fact>]
+let ``Lists.reverse returns empty list when initial list is empty`` () =
+    Assert.True([] = Lists.reverse [])
+
+[<Fact>]
+let ``Lists.reverse returns list with one element when initial list contains one element`` () =
+    Assert.True([1] = Lists.reverse [1])
+
+[<Fact>]
+let ``Lists.reverse reverses list with four elements`` () =
+    Assert.True([4; 2; 3; 1] = Lists.reverse [1; 3; 2; 4])
+
+[<Fact>]
+let ``Lists.reverse reverses list when list is huge`` () =
+    Assert.True([1000000..-1..1] = Lists.reverse [1..1000000])

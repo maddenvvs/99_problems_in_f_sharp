@@ -39,3 +39,9 @@ module Lists =
             | [] -> n
             | _ :: xs -> aux (n+1) xs
         aux 0 lst
+
+    let reverse lst =
+        let rec aux rev = function
+            | [] -> rev
+            | x :: xs -> aux ([x] @ rev) xs
+        aux [] lst
