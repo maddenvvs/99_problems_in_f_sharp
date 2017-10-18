@@ -119,3 +119,23 @@ let ``Lists.flatten returns same list is list is already flattened`` () =
 [<Fact>]
 let ``Lists.flatten returns flattened list if list contains one level nesting`` () =
     Assert.True([1; 2; 3] = Lists.flatten [Lists.Flat 1; Lists.Nested [Lists.Flat 2; Lists.Flat 3;]])
+
+[<Fact>]
+let ``Lists.compress returns empty list if initial list is empty`` () =
+    Assert.True([] = Lists.compress [])
+
+[<Fact>]
+let ``Lists.compress returns list with two elements if initial list consists of two unique elements`` () =
+    Assert.True([1; 2] = Lists.compress [1; 2])
+
+[<Fact>]
+let ``Lists.compress removes duplicates leading to one element's list`` () =
+    Assert.True([1] = Lists.compress [1; 1; 1; 1; 1])
+
+[<Fact>]
+let ``Lists.compress works correctly with huge list with no duplicates`` () =
+    Assert.True([1..1000000] = Lists.compress [1..1000000])
+
+[<Fact>]
+let ``Lists.compress works correctly with complicated case`` () =
+    Assert.True([1; 2; 4; 1] = Lists.compress [1; 1; 1; 1; 2; 4; 4; 1; 1])

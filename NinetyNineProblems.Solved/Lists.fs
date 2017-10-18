@@ -42,7 +42,7 @@ module Lists =
     let reverse lst =
         let rec aux rev = function
             | [] -> rev
-            | x :: xs -> aux ([x] @ rev) xs
+            | x :: xs -> aux (x :: rev) xs
         aux [] lst
 
     let is_palindrome lst = lst = List.rev lst
@@ -53,6 +53,13 @@ module Lists =
     let flatten lst =
         let rec aux flat = function
             | [] -> flat
-            | Flat x :: xs -> aux (flat @ [x]) xs
+            | Flat x :: xs -> aux (x :: flat) xs
             | Nested x :: xs -> aux (aux flat x) xs
-        aux [] lst
+        List.rev (aux [] lst)
+
+    let compress lst =
+        let rec aux acc = function
+            | [] -> acc
+            | [x] -> x :: acc
+            | x :: y :: xs -> if x = y then aux acc (y :: xs) else aux (x :: acc) (y :: xs)
+        List.rev (aux [] lst)
