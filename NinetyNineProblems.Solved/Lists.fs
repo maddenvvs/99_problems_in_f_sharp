@@ -45,3 +45,5 @@ module Lists =
             | [] -> rev
             | x :: xs -> aux ([x] @ rev) xs
         aux [] lst
+
+    let is_palindrome lst = lst = List.rev lst

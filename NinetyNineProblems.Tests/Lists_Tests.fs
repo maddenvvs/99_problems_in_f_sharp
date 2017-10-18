@@ -87,3 +87,27 @@ let ``Lists.reverse reverses list with four elements`` () =
 [<Fact>]
 let ``Lists.reverse reverses list when list is huge`` () =
     Assert.True([1000000..-1..1] = Lists.reverse [1..1000000])
+
+[<Fact>]
+let ``Lists.is_palindrome returns true for empty list`` () =
+    Assert.True(Lists.is_palindrome [])
+
+[<Fact>]
+let ``Lists.is_palindrome returns true for list with one element`` () =
+    Assert.True(Lists.is_palindrome [1])
+
+[<Fact>]
+let ``Lists.is_palindrome returns true for list with even number of elements`` () =
+    Assert.True(Lists.is_palindrome [1; 1])
+
+[<Fact>]
+let ``Lists.is_palindrome returns false for list with even number of elements`` () =
+    Assert.False(Lists.is_palindrome [1; 2])
+
+[<Fact>]
+let ``Lists.is_palindrome returns true for list with odd number of elements`` () =
+    Assert.True(Lists.is_palindrome [1; 2; 3; 2; 1])
+
+[<Fact>]
+let ``Lists.is_palindrome returns false for list with odd number of elements`` () =
+    Assert.False(Lists.is_palindrome [1..9])
