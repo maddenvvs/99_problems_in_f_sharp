@@ -111,3 +111,11 @@ let ``Lists.is_palindrome returns true for list with odd number of elements`` ()
 [<Fact>]
 let ``Lists.is_palindrome returns false for list with odd number of elements`` () =
     Assert.False(Lists.is_palindrome [1..9])
+
+[<Fact>]
+let ``Lists.flatten returns same list is list is already flattened`` () =
+    Assert.True([1; 2] = Lists.flatten [Lists.Flat 1; Lists.Flat 2])
+
+[<Fact>]
+let ``Lists.flatten returns flattened list if list contains one level nesting`` () =
+    Assert.True([1; 2; 3] = Lists.flatten [Lists.Flat 1; Lists.Nested [Lists.Flat 2; Lists.Flat 3;]])

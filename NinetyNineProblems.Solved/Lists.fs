@@ -46,3 +46,13 @@ module Lists =
         aux [] lst
 
     let is_palindrome lst = lst = List.rev lst
+
+    type 'a elem =
+        | Flat of 'a
+        | Nested of 'a elem list
+    let flatten lst =
+        let rec aux flat = function
+            | [] -> flat
+            | Flat x :: xs -> aux (flat @ [x]) xs
+            | Nested x :: xs -> aux (aux flat x) xs
+        aux [] lst
