@@ -34,8 +34,7 @@ module Lists =
         on huge lists.
     *)
     let len lst =
-        let rec aux n l =
-            match l with
+        let rec aux n = function
             | [] -> n
             | _ :: xs -> aux (n+1) xs
         aux 0 lst
