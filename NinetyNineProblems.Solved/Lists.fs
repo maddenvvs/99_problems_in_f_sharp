@@ -70,5 +70,18 @@ module Lists =
         let rec aux acc = function
             | [] -> acc
             | [x] -> x :: acc
-            | x :: (y :: _ as xs) -> if x = y then aux acc xs else aux (x :: acc) xs
+            | x :: (y :: _ as xs) ->
+                if x = y
+                then aux acc xs
+                else aux (x :: acc) xs
         List.rev (aux [] lst)
+
+    let pack lst =
+        let rec aux tmp res = function
+            | [] -> res
+            | [x] -> (x :: tmp) :: res
+            | x :: (y :: _ as xs) ->
+                if x = y
+                then aux (x :: tmp) res xs
+                else aux [] ((x :: tmp) :: res) xs
+        List.rev (aux [] [] lst)

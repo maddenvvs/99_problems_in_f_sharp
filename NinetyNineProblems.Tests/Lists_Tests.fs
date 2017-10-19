@@ -139,3 +139,25 @@ let ``Lists.compress works correctly with huge list with no duplicates`` () =
 [<Fact>]
 let ``Lists.compress works correctly with complicated case`` () =
     Assert.True([1; 2; 4; 1] = Lists.compress [1; 1; 1; 1; 2; 4; 4; 1; 1])
+
+[<Fact>]
+let ``Lists.pack returns empty list if intial list is empty`` () =
+    Assert.True([] = Lists.pack [])
+
+[<Fact>]
+let ``Lists.pack returns packed list with ones`` () =
+    Assert.True([[1; 1; 1]] = Lists.pack [1; 1; 1])
+
+[<Fact>]
+let ``Lists.pack returns packed list with ones and twos`` () =
+    Assert.True([[1; 1; 1]; [2; 2; 2]] = Lists.pack [1; 1; 1; 2; 2; 2])
+
+[<Fact>]
+let ``Lists.pack returns packed list for difficult test`` () =
+    Assert.True([["a";"a";"a";"a"];["b"];["c";"c"];["a";"a"];["d"];["e";"e";"e";"e"]] =
+        Lists.pack ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"])
+
+[<Fact>]
+let ``Lists.pack returns packed list for huge list`` () =
+    Assert.True([for i in 1..1000000 -> [i]] =
+        Lists.pack [1..1000000])
