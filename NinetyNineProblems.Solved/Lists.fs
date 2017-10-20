@@ -118,3 +118,9 @@ module Lists =
             | One x :: xs -> aux (x :: acc) xs
             | Many (c, x) :: xs -> aux ([for i in 1..c -> x] @ acc) xs
         List.rev (aux [] lst)
+
+    let duplicate lst =
+        let rec aux acc = function
+            | [] -> acc
+            | x :: xs -> aux (x :: (x :: acc)) xs
+        List.rev (aux [] lst)

@@ -223,3 +223,19 @@ let ``Lists.decode_modified decoded list with different types of elements`` () =
 let ``Lists.decode_modified decoded huge list`` () =
     Assert.True([for i in 1..1000000 -> i] =
         Lists.decode_modified [for i in 1..1000000 -> Lists.One i])
+
+[<Fact>]
+let ``Lists.duplicate returns empty list if initial list is empty`` () =
+    Assert.True([] = Lists.duplicate [])
+
+[<Fact>]
+let ``Lists.duplicate returns 2 elements if initial list contains 1 element`` () =
+    Assert.True([1; 1] = Lists.duplicate [1])
+
+[<Fact>]
+let ``Lists.duplicate returns 6 elements if initial list contains 3 elements`` () =
+    Assert.True([1; 1; 2; 2; 3; 3] = Lists.duplicate [1; 2; 3])
+
+[<Fact>]
+let ``Lists.duplicate works correctly with huge lists`` () =
+    Assert.True([for i in 1..100000 -> 1] = Lists.duplicate [for i in 1..50000 -> 1])
