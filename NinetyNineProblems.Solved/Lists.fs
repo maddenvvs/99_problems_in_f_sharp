@@ -113,14 +113,31 @@ module Lists =
         List.rev (aux 0 [] lst)
 
     let decode_modified lst =
+        let rec dupl times x acc =
+            if times = 0 then acc else dupl (times-1) x (x :: acc)
         let rec aux acc = function
             | [] -> acc
             | One x :: xs -> aux (x :: acc) xs
-            | Many (c, x) :: xs -> aux ([for i in 1..c -> x] @ acc) xs
-        List.rev (aux [] lst)
+            | Many (c, x) :: xs -> aux (dupl c x acc) xs
+        aux [] (List.rev lst)
 
+    (*
+        Both duplicate and nduplicate reverse initial list
+        to use better memory allocation pattern and tail-recursivity.
+        decode_modified uses the same pattern because of the same reasons.
+    *)
     let duplicate lst =
         let rec aux acc = function
             | [] -> acc
             | x :: xs -> aux (x :: (x :: acc)) xs
-        List.rev (aux [] lst)
+        aux [] (List.rev lst)
+
+    let nduplicate count lst =
+        let rec dupl times x acc =
+            if times = 0 then acc else dupl (times-1) x (x :: acc)
+        let rec aux acc = function
+            | [] -> acc
+            | x :: xs -> aux (dupl count x acc) xs
+        if count < 1
+        then failwith "Incorrect count number"
+        else aux [] (List.rev lst)

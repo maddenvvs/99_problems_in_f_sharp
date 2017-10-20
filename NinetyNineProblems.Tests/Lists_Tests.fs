@@ -239,3 +239,19 @@ let ``Lists.duplicate returns 6 elements if initial list contains 3 elements`` (
 [<Fact>]
 let ``Lists.duplicate works correctly with huge lists`` () =
     Assert.True([for i in 1..100000 -> 1] = Lists.duplicate [for i in 1..50000 -> 1])
+
+[<Fact>]
+let ``Lists.nduplicate returns empty list if initial list is empty`` () =
+    Assert.True([] = Lists.nduplicate 1 [])
+
+[<Fact>]
+let ``Lists.nduplicate returns 2 elements if initial list contains 1 element`` () =
+    Assert.True([1; 1] = Lists.nduplicate 2 [1])
+
+[<Fact>]
+let ``Lists.nduplicate returns 9 elements if initial list contains 3 elements`` () =
+    Assert.True([1; 1; 1; 2; 2; 2; 3; 3; 3] = Lists.nduplicate 3 [1; 2; 3])
+
+[<Fact>]
+let ``Lists.nduplicate works correctly with huge lists`` () =
+    Assert.True([for i in 1..100000 -> 1] = Lists.nduplicate 10 [for i in 1..10000 -> 1])
