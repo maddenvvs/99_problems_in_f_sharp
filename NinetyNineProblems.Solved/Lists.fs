@@ -85,3 +85,13 @@ module Lists =
                 then aux (x :: tmp) res xs
                 else aux [] ((x :: tmp) :: res) xs
         List.rev (aux [] [] lst)
+
+    let encode lst =
+        let rec aux counter res = function
+            | [] -> res
+            | [x] -> (counter + 1, x) :: res
+            | x :: (y :: _ as xs) ->
+                if x = y
+                then aux (counter + 1) res xs
+                else aux 0 ((counter + 1, x) :: res) xs
+        List.rev (aux 0 [] lst)

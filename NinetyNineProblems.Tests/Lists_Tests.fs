@@ -141,7 +141,7 @@ let ``Lists.compress works correctly with complicated case`` () =
     Assert.True([1; 2; 4; 1] = Lists.compress [1; 1; 1; 1; 2; 4; 4; 1; 1])
 
 [<Fact>]
-let ``Lists.pack returns empty list if intial list is empty`` () =
+let ``Lists.pack returns empty list if initial list is empty`` () =
     Assert.True([] = Lists.pack [])
 
 [<Fact>]
@@ -161,3 +161,25 @@ let ``Lists.pack returns packed list for difficult test`` () =
 let ``Lists.pack returns packed list for huge list`` () =
     Assert.True([for i in 1..1000000 -> [i]] =
         Lists.pack [1..1000000])
+
+[<Fact>]
+let ``Lists.encode returns empty list if initial list is empty`` () =
+    Assert.True([] = Lists.encode [])
+
+[<Fact>]
+let ``Lists.encode returns packed list with ones`` () =
+    Assert.True([(3,1)] = Lists.encode [1; 1; 1])
+
+[<Fact>]
+let ``Lists.encode returns packed list with ones and twos`` () =
+    Assert.True([(3,1); (2,2)] = Lists.encode [1; 1; 1; 2; 2])
+
+[<Fact>]
+let ``Lists.encode returns packed list for difficult test`` () =
+    Assert.True([(4,"a"); (1,"b"); (2,"c"); (2,"a"); (1,"d"); (4,"e")] =
+        Lists.encode ["a";"a";"a";"a";"b";"c";"c";"a";"a";"d";"e";"e";"e";"e"])
+
+[<Fact>]
+let ``Lists.encode returns packed list for huge list`` () =
+    Assert.True([for i in 1..1000000 -> (1,i)] =
+        Lists.encode [1..1000000])
