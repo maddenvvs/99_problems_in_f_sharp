@@ -148,3 +148,12 @@ module Lists =
                 then aux 1u acc xs
                 else aux (pos + 1u) (x :: acc) xs
         List.rev (aux 1u [] lst)
+
+    let split k lst =
+        let rec aux pos l = function
+            | [] -> List.rev l, []
+            | x :: xs as r ->
+                if pos < k
+                then aux (pos + 1u) (x :: l) xs
+                else List.rev l, r
+        aux 0u [] lst

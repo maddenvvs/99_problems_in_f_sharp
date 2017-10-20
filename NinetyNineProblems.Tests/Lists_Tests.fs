@@ -284,3 +284,24 @@ let ``Lists.drop works correctly for short list`` () =
 let ``Lists.drop works correctly for huge list`` () =
     Assert.True([for i in 1..90000 -> 1] =
         Lists.drop 10u [for i in 1..100000 -> 1])
+
+[<Fact>]
+let ``Lists.split works correctly with empty list`` () =
+    Assert.True(([], []) = Lists.split 1u [])
+
+[<Fact>]
+let ``Lists.split returns empty left part if index is zero`` () =
+    Assert.True(([], [1; 2; 3]) = Lists.split 0u [1; 2; 3])
+
+[<Fact>]
+let ``Lists.split returns empty right part if index is equal to length of list`` () =
+    Assert.True(([1; 2; 3], []) = Lists.split 3u [1; 2; 3])
+
+[<Fact>]
+let ``Lists.split splits properly if index is between both sides`` () =
+    Assert.True(([1; 2], [3; 4; 5]) = Lists.split 2u [1; 2; 3; 4; 5])
+
+[<Fact>]
+let ``Lists.split splits properly if list is huge`` () =
+    Assert.True(([for i in 1..10000 -> 1], [for i in 1..10000 -> 1]) =
+        Lists.split 10000u [for i in 1..20000 -> 1])
