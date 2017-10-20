@@ -132,7 +132,7 @@ module Lists =
             | x :: xs -> aux (x :: (x :: acc)) xs
         aux [] (List.rev lst)
 
-    let nduplicate (count: uint32) lst =
+    let nduplicate count lst =
         let rec dupl times x acc =
             if times = 0u then acc else dupl (times-1u) x (x :: acc)
         let rec aux acc = function
@@ -140,7 +140,7 @@ module Lists =
             | x :: xs -> aux (dupl count x acc) xs
         aux [] (List.rev lst)
 
-    let drop (k : uint32) lst =
+    let drop k lst =
         let rec aux pos acc = function
             | [] -> acc
             | x :: xs ->
