@@ -183,3 +183,21 @@ let ``Lists.encode returns packed list for difficult test`` () =
 let ``Lists.encode returns packed list for huge list`` () =
     Assert.True([for i in 1..1000000 -> (1,i)] =
         Lists.encode [1..1000000])
+
+[<Fact>]
+let ``Lists.encode_modified returns empty list if initial list is empty`` () =
+    Assert.True([] = Lists.encode_modified [])
+
+[<Fact>]
+let ``Lists.encode_modified returns packed list with ones`` () =
+    Assert.True([Lists.Many (3,1)] = Lists.encode_modified [1; 1; 1])
+
+[<Fact>]
+let ``Lists.encode_modified returns packed list with ones, twos and one three`` () =
+    Assert.True([Lists.Many (3,1); Lists.Many (2,2); Lists.One 3] =
+        Lists.encode_modified [1; 1; 1; 2; 2; 3])
+
+[<Fact>]
+let ``Lists.encode_modified returns packed list for huge list`` () =
+    Assert.True([for i in 1..1000000 -> Lists.One i] =
+        Lists.encode_modified [1..1000000])
