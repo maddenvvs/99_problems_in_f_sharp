@@ -96,15 +96,25 @@ module Lists =
                 else aux 0 ((counter + 1, x) :: res) xs
         List.rev (aux 0 [] lst)
 
+    // This is also solution for problem 13.
     type 'a rlel =
         | One of 'a
         | Many of int * 'a
     let encode_modified lst =
+        let create counter x =
+            if counter = 0 then One x else Many (counter + 1, x)
         let rec aux counter res = function
             | [] -> res
-            | [x] -> (if counter = 0 then One x else Many (counter + 1, x)) :: res
+            | [x] -> create counter x :: res
             | x :: (y :: _ as xs) ->
                 if x = y
                 then aux (counter + 1) res xs
-                else aux 0 ((if counter = 0 then One x else Many (counter + 1, x)) :: res) xs
+                else aux 0 (create counter x :: res) xs
         List.rev (aux 0 [] lst)
+
+    let decode_modified lst =
+        let rec aux acc = function
+            | [] -> acc
+            | One x :: xs -> aux (x :: acc) xs
+            | Many (c, x) :: xs -> aux ([for i in 1..c -> x] @ acc) xs
+        List.rev (aux [] lst)
