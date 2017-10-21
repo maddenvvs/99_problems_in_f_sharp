@@ -305,3 +305,28 @@ let ``Lists.split splits properly if index is between both sides`` () =
 let ``Lists.split splits properly if list is huge`` () =
     Assert.True(([for i in 1..10000 -> 1], [for i in 1..10000 -> 1]) =
         Lists.split 10000u [for i in 1..20000 -> 1])
+
+[<Fact>]
+let ``Lists.slice works correctly with empty list`` () =
+    Assert.True([] = Lists.slice 1u 2u [])
+
+[<Fact>]
+let ``Lists.slice returns whole list if slice is equal to list length`` () =
+    Assert.True([1; 2; 3; 4] = Lists.slice 1u 4u [1; 2; 3; 4])
+
+[<Fact>]
+let ``Lists.slice returns whole list if slice is larger then list length`` () =
+    Assert.True([1; 2; 3; 4] = Lists.slice 0u 100u [1; 2; 3; 4])
+
+[<Fact>]
+let ``Lists.slice returns middle part of the list`` () =
+    Assert.True([2; 3; 4] = Lists.slice 2u 4u [1; 2; 3; 4; 5])
+
+[<Fact>]
+let ``Lists.slice returns empty list if slice borders are reversed`` () =
+    Assert.True([] = Lists.slice 4u 2u [1; 2; 3; 4; 5])
+
+[<Fact>]
+let ``Lists.slice works correctly with huge list`` () =
+    Assert.True([for i in 500..95000 -> i] =
+        Lists.slice 500u 95000u [for i in 1..100000 -> i])

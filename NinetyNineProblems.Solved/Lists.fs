@@ -157,3 +157,14 @@ module Lists =
                 then aux (pos + 1u) (x :: l) xs
                 else List.rev l, r
         aux 0u [] lst
+
+    let slice l r lst =
+        let rec aux i acc = function
+            | [] -> List.rev acc
+            | x :: xs ->
+                if (l <= i) then
+                    if (i <= r)
+                    then aux (i + 1u) (x :: acc) xs
+                    else List.rev acc
+                else aux (i + 1u) acc xs
+        aux 1u [] lst
