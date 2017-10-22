@@ -167,3 +167,12 @@ module Lists =
                 | false, _ -> aux (i + 1u) acc xs
                 | _, false -> List.rev acc
         aux 1u [] lst
+
+    let rotate n lst =
+        let len = List.length lst
+        match len with
+        | 0 -> lst
+        | len ->
+            let n = (n % len + len) % len
+            let l, r = split (uint32 n) lst
+            r @ l

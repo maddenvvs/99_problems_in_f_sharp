@@ -330,3 +330,24 @@ let ``Lists.slice returns empty list if slice borders are reversed`` () =
 let ``Lists.slice works correctly with huge list`` () =
     Assert.True([for i in 500..95000 -> i] =
         Lists.slice 500u 95000u [for i in 1..100000 -> i])
+
+[<Fact>]
+let ``Lists.rotate works correctly with empty list`` () =
+    Assert.True([] = Lists.rotate 2 [])
+
+[<Fact>]
+let ``Lists.rotate works correctly with positive shift`` () =
+    Assert.True([3; 4; 1; 2] = Lists.rotate 2 [1; 2; 3; 4])
+
+[<Fact>]
+let ``Lists.rotate works correctly with negative shift`` () =
+    Assert.True([2; 3; 4; 1] = Lists.rotate -3 [1; 2; 3; 4])
+
+[<Fact>]
+let ``Lists.rotate works correctly with zero`` () =
+    Assert.True([2; 3; 4; 1] = Lists.rotate 0 [2; 3; 4; 1])
+
+[<Fact>]
+let ``Lists.rotate works correctly with huge lists`` () =
+    Assert.True([for i in 5001..10000 -> i] @ [for i in 1..5000 -> i] =
+        Lists.rotate 5000 [for i in 1..10000 -> i])
