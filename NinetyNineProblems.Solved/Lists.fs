@@ -162,9 +162,8 @@ module Lists =
         let rec aux i acc = function
             | [] -> List.rev acc
             | x :: xs ->
-                if (l <= i) then
-                    if (i <= r)
-                    then aux (i + 1u) (x :: acc) xs
-                    else List.rev acc
-                else aux (i + 1u) acc xs
+                match l <= i, i <= r with
+                | true, true -> aux (i + 1u) (x :: acc) xs
+                | false, _ -> aux (i + 1u) acc xs
+                | _, false -> List.rev acc
         aux 1u [] lst
