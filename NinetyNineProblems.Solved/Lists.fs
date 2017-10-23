@@ -197,7 +197,10 @@ module Lists =
                 else (List.rev (el :: acc)) @ l
         aux 1u [] lst
 
-    let range l r = [for i in l..r -> i]
+    let range l r =
+        if l < r
+        then [for i in l..r -> i]
+        else [for i in r..l -> i]
 
     let rnd_select n lst =
         let random = Random()
