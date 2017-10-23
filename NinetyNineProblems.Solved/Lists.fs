@@ -195,7 +195,7 @@ module Lists =
                 if pos < k
                 then aux (pos + 1u) (x :: acc) xs
                 else (List.rev (el :: acc)) @ l
-        aux 0u [] lst
+        aux 1u [] lst
 
     let range l r = [for i in l..r -> i]
 

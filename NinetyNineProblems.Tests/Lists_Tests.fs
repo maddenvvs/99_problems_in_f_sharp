@@ -368,3 +368,20 @@ let ``Lists.remove_at works if element to remove is out of boundary`` () =
 let ``Lists.remove_at works if list is huge`` () =
     Assert.True((Some 1, [for i in 1..9999 -> 1]) =
         Lists.remove_at 9999u [for i in 1..10000 -> 1])
+
+[<Fact>]
+let ``Lists.insert_at works well with empty lists`` () =
+    Assert.True([1] = Lists.insert_at 1 1u [])
+
+[<Fact>]
+let ``Lists.insert_at inserts in the middle of list`` () =
+    Assert.True([1; 2; 3; 4] = Lists.insert_at 3 3u [1; 2; 4])
+
+[<Fact>]
+let ``Lists.insert_at inserts in the end of list if index is larger the list length`` () =
+    Assert.True([1; 2; 3] = Lists.insert_at 3 100u [1; 2])
+
+[<Fact>]
+let ``Lists.insert_at works well with huge lists`` () =
+    Assert.True([for i in 1..10000 -> 1] =
+        Lists.insert_at 1 9998u [for i in 1..9999 -> 1])
