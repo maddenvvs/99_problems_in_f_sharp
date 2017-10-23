@@ -1,5 +1,7 @@
 namespace NinetyNineProblems.Solved
 
+open System
+
 module Lists =
 
     let rec last = function
@@ -176,3 +178,43 @@ module Lists =
             let n = (n % len + len) % len
             let l, r = split (uint32 n) lst
             r @ l
+
+    let remove_at k lst =
+        let rec aux pos acc = function
+            | [] -> None, List.rev acc
+            | x :: xs ->
+                if pos < k
+                then aux (pos + 1u) (x :: acc) xs
+                else Some x, (List.rev acc) @ xs
+        aux 1u [] lst
+
+    let insert_at el k lst =
+        let rec aux pos acc = function
+            | [] -> List.rev (el :: acc)
+            | x :: xs as l ->
+                if pos < k
+                then aux (pos + 1u) (x :: acc) xs
+                else (List.rev (el :: acc)) @ l
+        aux 0u [] lst
+
+    let range l r = [for i in l..r -> i]
+
+    let rnd_select n lst =
+        let random = Random()
+        let rec aux k acc = function
+            | [] -> acc
+            | l ->
+                if k = 0u then acc
+                else
+                    let len = List.length l
+                    let pos = random.Next(1, len + 1)
+                    match remove_at (uint32 pos) l with
+                    | Some x, rest -> aux (k - 1u) (x :: acc) rest
+                    | _ -> failwith "Cannot perform a removal of next element"
+        aux n [] lst
+
+    let lotto n m = rnd_select n (range 1 m)
+
+    let rnd_permutation lst =
+        let len = List.length lst
+        rnd_select (uint32 len) lst

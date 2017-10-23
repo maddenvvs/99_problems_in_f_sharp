@@ -351,3 +351,20 @@ let ``Lists.rotate works correctly with zero`` () =
 let ``Lists.rotate works correctly with huge lists`` () =
     Assert.True([for i in 5001..10000 -> i] @ [for i in 1..5000 -> i] =
         Lists.rotate 5000 [for i in 1..10000 -> i])
+
+[<Fact>]
+let ``Lists.remove_at works with empty list`` () =
+    Assert.True((None, []) = Lists.remove_at 3u [])
+
+[<Fact>]
+let ``Lists.remove_at works if element to remove is inside of list`` () =
+    Assert.True((Some 4, [1; 2; 3; 5]) = Lists.remove_at 4u [1; 2; 3; 4; 5])
+
+[<Fact>]
+let ``Lists.remove_at works if element to remove is out of boundary`` () =
+    Assert.True((None, [1; 2; 3; 4; 5]) = Lists.remove_at 100u [1; 2; 3; 4; 5])
+
+[<Fact>]
+let ``Lists.remove_at works if list is huge`` () =
+    Assert.True((Some 1, [for i in 1..9999 -> 1]) =
+        Lists.remove_at 9999u [for i in 1..10000 -> 1])
