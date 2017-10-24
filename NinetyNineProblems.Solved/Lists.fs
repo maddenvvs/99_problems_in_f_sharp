@@ -202,6 +202,10 @@ module Lists =
         then [for i in l..r -> i]
         else [for i in r..l -> i]
 
+    (*
+        Next three functions should be refactored
+        in order to be testable.
+    *)
     let rnd_select n lst =
         let random = Random()
         let rec aux k acc = function
