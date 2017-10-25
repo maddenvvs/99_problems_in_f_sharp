@@ -225,3 +225,12 @@ module Lists =
     let rnd_permutation lst =
         let len = List.length lst
         rnd_select (uint32 len) lst
+
+    let rec combination k lst =
+        if (k <= 0) then [[]]
+        else match lst with
+             | [] -> []
+             | x :: xs ->
+                 let withX = List.map (fun l -> x :: l) (combination (k-1) xs)
+                 let withoutX = combination k xs
+                 withX @ withoutX

@@ -385,3 +385,15 @@ let ``Lists.insert_at inserts in the end of list if index is larger the list len
 let ``Lists.insert_at works well with huge lists`` () =
     Assert.True([for i in 1..10000 -> 1] =
         Lists.insert_at 1 9998u [for i in 1..9999 -> 1])
+
+[<Fact>]
+let ``Lists.combination works well with empty lists`` () =
+    Assert.True([[]] = Lists.combination 0 [])
+
+[<Fact>]
+let ``Lists.combination returns one combination when k equals to list length`` () =
+    Assert.Equal(1, List.length (Lists.combination 3 [1; 2; 3]))
+
+[<Fact>]
+let ``Lists.combination returns correct number of combinations`` () =
+    Assert.Equal(10, List.length (Lists.combination 3 [1; 2; 3; 4; 5]))
