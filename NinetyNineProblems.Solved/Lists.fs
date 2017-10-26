@@ -234,3 +234,14 @@ module Lists =
                  let withX = List.map (fun l -> x :: l) (combination (k-1) xs)
                  let withoutX = combination k xs
                  withX @ withoutX
+
+    // 27
+    let multiCombination sz lst =
+        failwith "Not implemented yet"
+
+    // 28
+    let lsort lst =
+        failwith "Not implemented yet"
+
+    let lfsort lst =
+        failwith "Not implemented yet"
