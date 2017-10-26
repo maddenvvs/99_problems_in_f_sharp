@@ -6,9 +6,8 @@ module Arithmetic =
         2.01
         Determine whether a given integer number is prime.
     *)
-    let is_prime n =
-        match abs n with
-        | 0 | 1 -> false
+    let isPrime = function
+        | n when n < 2 -> false
         | 2 -> true
         | n when n % 2 = 0 -> false
         | n ->
