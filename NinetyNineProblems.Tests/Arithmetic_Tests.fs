@@ -67,3 +67,31 @@ let ``primeFactors returns list with dividers in ascending order`` () =
 [<Fact>]
 let ``primeFactors works well with large numbers`` () =
     Assert.True([3; 3; 239; 4649] = primeFactors 9999999)
+
+[<Theory>]
+[<InlineData(1)>]
+[<InlineData(0)>]
+[<InlineData(-1)>]
+[<InlineData(-17)>]
+[<InlineData(-1000)>]
+let ``primeFactorsMult returns empty list for numbers less then 2`` n =
+    Assert.True([] = primeFactorsMult n)
+
+[<Theory>]
+[<InlineData(3)>]
+[<InlineData(5)>]
+[<InlineData(7)>]
+[<InlineData(11)>]
+[<InlineData(7919)>]
+[<InlineData(104_729)>]
+[<InlineData(2_147_483_647)>]
+let ``primeFactorsMult returns list with one number for prime numbes`` n =
+    Assert.True([(n, 1)] = primeFactorsMult n)
+
+[<Fact>]
+let ``primeFactorsMult returns list with dividers in ascending order`` () =
+    Assert.True([(3, 2); (5, 1); (7, 1)] = primeFactorsMult 315)
+
+[<Fact>]
+let ``primeFactorsMult works well with large numbers`` () =
+    Assert.True([(3, 2); (239, 1); (4649, 1)] = primeFactorsMult 9999999)

@@ -27,3 +27,17 @@ module Arithmetic =
                 then aux d (d :: acc) (k / d)
                 else aux (d + 2) acc k
         List.rev (aux 3 [] n)
+
+    (*
+        2.03
+        Construct a list containing the prime factors and their multiplicity.
+    *)
+    let primeFactorsMult =
+        let rec aux counter res = function
+            | [] -> res
+            | [x] -> (x, counter + 1) :: res
+            | x :: (y :: _ as xs) ->
+                if x = y
+                then aux (counter + 1) res xs
+                else aux 0 ((x, counter + 1) :: res) xs
+        primeFactors >> aux 0 [] >> List.rev
