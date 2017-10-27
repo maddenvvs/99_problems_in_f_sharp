@@ -60,8 +60,10 @@ let ``primeFactors returns empty list for numbers less then 2`` n =
 let ``primeFactors returns list with one number for prime numbes`` n =
     Assert.True([n] = primeFactors n)
 
+[<Fact>]
 let ``primeFactors returns list with dividers in ascending order`` () =
     Assert.True([3; 3; 5; 7] = primeFactors 315)
 
+[<Fact>]
 let ``primeFactors works well with large numbers`` () =
     Assert.True([3; 3; 239; 4649] = primeFactors 9999999)
