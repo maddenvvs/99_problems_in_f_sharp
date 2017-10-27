@@ -41,3 +41,17 @@ module Arithmetic =
                 then aux (counter + 1) res xs
                 else aux 0 ((x, counter + 1) :: res) xs
         primeFactors >> aux 0 [] >> List.rev
+
+    (*
+        2.04
+        A list of prime numbers.
+    *)
+    let primesRange m n =
+        let rec aux acc = function
+            | t when t > n -> acc
+            | t ->
+                if isPrime t
+                then aux (t :: acc) (t + 1)
+                else aux acc (t + 1)
+        List.rev (aux [] m)
+

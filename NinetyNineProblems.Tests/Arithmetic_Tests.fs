@@ -95,3 +95,12 @@ let ``primeFactorsMult returns list with dividers in ascending order`` () =
 [<Fact>]
 let ``primeFactorsMult works well with large numbers`` () =
     Assert.True([(3, 2); (239, 1); (4649, 1)] = primeFactorsMult 9999999)
+
+[<Fact>]
+let ``primesRange produces list of primes in given range`` () =
+    Assert.True([2; 3; 5; 7; 11; 13; 17; 19; 23; 29; 31] =
+        primesRange 1 32)
+
+[<Fact>]
+let ``primesRange produces list of primes for medium range`` () =
+    Assert.Equal(1000, (primesRange 1 7920 |> List.length))
