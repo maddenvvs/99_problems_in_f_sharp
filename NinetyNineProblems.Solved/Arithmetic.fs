@@ -55,3 +55,18 @@ module Arithmetic =
                 else aux acc (t + 1)
         List.rev (aux [] m)
 
+    (*
+        2.05
+        Goldbach's conjecture.
+    *)
+    let goldbach = function
+        | n when (n < 3) || (n % 2 = 1) -> []
+        | n when n = 4 -> [2; 2]
+        | n ->
+            let rec aux = function
+                | t when t > n -> []
+                | t ->
+                    if isPrime t && isPrime (n - t)
+                    then [t; n-t]
+                    else aux (t + 2)
+            aux 3

@@ -104,3 +104,31 @@ let ``primesRange produces list of primes in given range`` () =
 [<Fact>]
 let ``primesRange produces list of primes for medium range`` () =
     Assert.Equal(1000, (primesRange 1 7920 |> List.length))
+
+[<Theory>]
+[<InlineData(2)>]
+[<InlineData(1)>]
+[<InlineData(0)>]
+[<InlineData(-1)>]
+[<InlineData(-97)>]
+let ``goldbach produces empty list for numbers lower than 3`` n =
+    Assert.True([] = goldbach n)
+
+[<Theory>]
+[<InlineData(3)>]
+[<InlineData(5)>]
+[<InlineData(21)>]
+[<InlineData(2_147_483_647)>]
+let ``goldbach produces empty list for odd positive numbers`` n =
+    Assert.True([] = goldbach n)
+
+[<Theory>]
+[<InlineData(4)>]
+[<InlineData(6)>]
+[<InlineData(22)>]
+[<InlineData(2_147_483_646)>]
+let ``goldbach produces list with two numbers for even positive numbers greater than 2`` n =
+    Assert.Equal(2, List.length (goldbach n))
+
+let ``goldbach produces correct sum of two numbers`` () =
+    Assert.True([5; 23] = goldbach 28)
