@@ -70,3 +70,24 @@ module Arithmetic =
                     then [t; n-t]
                     else aux (t + 2)
             aux 3
+
+    (*
+        2.06
+        Given a range of integers by its lower and upper limit,
+        print a list of all even numbers and their Goldbach composition.
+    *)
+    let goldbachList m n =
+        let rec aux acc t =
+            if t > n
+            then acc
+            else match goldbach t with
+                 | [] -> aux acc (t + 2)
+                 | l -> aux ((t :: l) :: acc) (t + 2)
+        List.rev (aux [] (if m % 2 = 0 then m else (m + 1)))
+
+    (*
+        2.06 (continue)
+    *)
+    let goldbachListLimit m n l =
+        goldbachList m n
+        |> List.filter (fun [_; x; y] -> x > l && y > l)

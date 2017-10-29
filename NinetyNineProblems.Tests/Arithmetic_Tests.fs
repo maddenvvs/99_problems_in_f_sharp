@@ -133,3 +133,15 @@ let ``goldbach produces list with two numbers for even positive numbers greater 
 [<Fact>]
 let ``goldbach produces correct sum of two numbers`` () =
     Assert.True([5; 23] = goldbach 28)
+
+[<Fact>]
+let ``goldbachList produces the same output as in the initial task description`` () =
+    Assert.True([[10; 3; 7]; [12; 5; 7]; [14; 3; 11];
+                [16; 3; 13]; [18; 5; 13]; [20; 3; 17]] =
+        goldbachList 9 20)
+
+[<Fact>]
+let ``goldbachListLimit produces the same output as in the initial task description`` () =
+    Assert.True([[992; 73; 919]; [1382; 61; 1321];
+                [1856; 67; 1789]; [1928; 61; 1867]] =
+        goldbachListLimit 1 2000 50)
