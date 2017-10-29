@@ -154,3 +154,9 @@ let ``goldbachListLimit produces the same output as in the initial task descript
 [<InlineData(20536, 7826, 2)>]
 let ``gcd finds greatest common divisor correctly`` a b g =
     Assert.Equal(g, gcd (a, b))
+
+[<Theory>]
+[<InlineData(1, 2)>]
+[<InlineData(13, 27)>]
+let ``coprime identifies coprimes correctly`` a b =
+    Assert.True(coprime (a, b))

@@ -99,3 +99,9 @@ module Arithmetic =
     let rec gcd = function
         | (m, 0) -> m
         | (m, n) -> gcd (n, m % n)
+
+    (*
+        2.08
+        Determine whether two positive integer numbers are coprime.
+    *)
+    let coprime = gcd >> (=) 1
