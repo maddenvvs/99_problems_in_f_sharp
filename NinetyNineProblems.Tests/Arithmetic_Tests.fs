@@ -130,5 +130,6 @@ let ``goldbach produces empty list for odd positive numbers`` n =
 let ``goldbach produces list with two numbers for even positive numbers greater than 2`` n =
     Assert.Equal(2, List.length (goldbach n))
 
+[<Fact>]
 let ``goldbach produces correct sum of two numbers`` () =
     Assert.True([5; 23] = goldbach 28)
