@@ -91,3 +91,11 @@ module Arithmetic =
     let goldbachListLimit m n l =
         goldbachList m n
         |> List.filter (fun [_; x; y] -> x > l && y > l)
+
+    (*
+        2.07
+        Greatest common divisor
+    *)
+    let rec gcd = function
+        | (m, 0) -> m
+        | (m, n) -> gcd (n, m % n)

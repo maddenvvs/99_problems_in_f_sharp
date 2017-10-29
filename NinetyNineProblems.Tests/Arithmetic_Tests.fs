@@ -145,3 +145,12 @@ let ``goldbachListLimit produces the same output as in the initial task descript
     Assert.True([[992; 73; 919]; [1382; 61; 1321];
                 [1856; 67; 1789]; [1928; 61; 1867]] =
         goldbachListLimit 1 2000 50)
+
+[<Theory>]
+[<InlineData(36, 63, 9)>]
+[<InlineData(1, 2, 1)>]
+[<InlineData(500, 1000, 500)>]
+[<InlineData(13, 27, 1)>]
+[<InlineData(20536, 7826, 2)>]
+let ``gcd finds greatest common divisor correctly`` a b g =
+    Assert.Equal(g, gcd (a, b))
