@@ -1,5 +1,7 @@
 namespace NinetyNineProblems.Solved
 
+open System.Diagnostics
+
 module Arithmetic =
 
     (*
@@ -119,3 +121,25 @@ module Arithmetic =
                 then aux (acc + 1) (r + 1)
                 else aux acc (r + 1)
         aux 1 2
+
+    (*
+        2.10
+        Calculate Euler's totient function phi(m).
+    *)
+    let phiImproved =
+        primeFactorsMult
+        >> List.fold (fun v (p, m) -> v * (p - 1) * (pown p (m - 1))) 1
+
+    (*
+        2.11
+        Compare the two methods of calculating Euler's totient function.
+    *)
+    let timeOf f a =
+        let sw = Stopwatch.StartNew()
+        f a |> ignore
+        sw.ElapsedMilliseconds
+
+    let comparePhis m =
+        let phiNaiveTime = timeOf phiNaive m
+        let phiImprovedTime = timeOf phiImproved m
+        phiNaiveTime - phiImprovedTime

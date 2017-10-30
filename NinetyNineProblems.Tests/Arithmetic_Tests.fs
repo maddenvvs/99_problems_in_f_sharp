@@ -170,3 +170,17 @@ let ``coprime identifies coprimes correctly`` a b =
 [<InlineData(10090, 4032)>]
 let ``phiNaive counts number of coprime numbers up to m`` m phi =
     Assert.Equal(phi, phiNaive m)
+
+[<Theory>]
+[<InlineData(1, 1)>]
+[<InlineData(9, 6)>]
+[<InlineData(74, 36)>]
+[<InlineData(98, 42)>]
+[<InlineData(10009, 10008)>]
+[<InlineData(10090, 4032)>]
+let ``phiImproved counts number of coprime numbers up to m`` m phi =
+    Assert.Equal(phi, phiImproved m)
+
+[<Fact>]
+let ``phiImproved works faster than phiNaive`` () =
+    Assert.True((comparePhis 10090) > 0L)
