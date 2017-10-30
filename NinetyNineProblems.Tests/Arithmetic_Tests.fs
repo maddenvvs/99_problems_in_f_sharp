@@ -160,3 +160,13 @@ let ``gcd finds greatest common divisor correctly`` a b g =
 [<InlineData(13, 27)>]
 let ``coprime identifies coprimes correctly`` a b =
     Assert.True(coprime (a, b))
+
+[<Theory>]
+[<InlineData(1, 1)>]
+[<InlineData(9, 6)>]
+[<InlineData(74, 36)>]
+[<InlineData(98, 42)>]
+[<InlineData(10009, 10008)>]
+[<InlineData(10090, 4032)>]
+let ``phiNaive counts number of coprime numbers up to m`` m phi =
+    Assert.Equal(phi, phiNaive m)

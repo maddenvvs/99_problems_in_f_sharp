@@ -105,3 +105,17 @@ module Arithmetic =
         Determine whether two positive integer numbers are coprime.
     *)
     let coprime = gcd >> (=) 1
+
+    (*
+        2.09
+        Euler's totient function phi(m) is defined as the number
+        of positive integers r (1 <= r < m) that are coprime to m.
+    *)
+    let phiNaive m =
+        let rec aux acc = function
+            | r when r >= m -> acc
+            | r ->
+                if coprime (m, r)
+                then aux (acc + 1) (r + 1)
+                else aux acc (r + 1)
+        aux 1 2
