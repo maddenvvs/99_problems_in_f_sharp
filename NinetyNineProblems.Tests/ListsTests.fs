@@ -1,4 +1,4 @@
-module Lists_Tests
+module ListsTests
 
 open System
 open Xunit

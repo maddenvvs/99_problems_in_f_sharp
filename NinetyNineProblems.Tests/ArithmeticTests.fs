@@ -1,4 +1,4 @@
-module Arithmetic_Tests
+module ArithmeticTests
 
 open System
 open Xunit
