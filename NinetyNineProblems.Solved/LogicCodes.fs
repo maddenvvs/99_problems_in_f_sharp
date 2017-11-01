@@ -47,3 +47,16 @@ module LogicCodes =
         |> generateBools
         |> List.map (List.zip vars)
         |> List.map (evalExpr expr)
+
+    (*
+        3.04
+        Gray code.
+    *)
+    let rec gray = function
+        | n when n < 1 -> []
+        | 1 -> ["0"; "1"]
+        | n ->
+            let prev = gray (n - 1)
+            let left = List.map (fun c -> "0" + c) prev
+            let right = List.map (fun c -> "1" + c) (List.rev prev)
+            left @ right
