@@ -8,6 +8,7 @@
     <Compile Include="Lists.fs" />
     <Compile Include="Arithmetic.fs" />
     <Compile Include="LogicCodes.fs" />
+    <Compile Include="BinaryTrees.fs" />
   </ItemGroup>
 
 </Project>

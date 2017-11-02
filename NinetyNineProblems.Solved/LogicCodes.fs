@@ -60,3 +60,10 @@ module LogicCodes =
             let left = List.map (fun c -> "0" + c) prev
             let right = List.map (fun c -> "1" + c) (List.rev prev)
             left @ right
+
+    (*
+        3.05
+        Huffman encoding.
+    *)
+    let huffman fcs =
+        failwith "Not implemented yet"

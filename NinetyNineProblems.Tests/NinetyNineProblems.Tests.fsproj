@@ -10,6 +10,7 @@
     <Compile Include="ListsTests.fs" />
     <Compile Include="ArithmeticTests.fs" />
     <Compile Include="LogicCodesTests.fs" />
+    <Compile Include="BinaryTreesTests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
