@@ -19,3 +19,15 @@ let ``cbalTree generates correct tree for n = 7`` () =
     Assert.Equal(Node ('x',
         Node ('x', Leaf 'x', Leaf 'x'),
         Node ('x', Leaf 'x', Leaf 'x')), cbalTree 7)
+
+[<Fact>]
+let ``symmetric returns true if tree is one leaf only`` () =
+    Assert.True(symmetric (Leaf 'x'))
+
+[<Theory>]
+[<InlineData(3)>]
+[<InlineData(7)>]
+[<InlineData(15)>]
+[<InlineData(31)>]
+let ``symmetric returns true for fully balanced trees`` n =
+    Assert.True(symmetric (cbalTree n))
