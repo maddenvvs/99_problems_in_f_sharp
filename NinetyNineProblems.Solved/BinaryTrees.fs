@@ -34,3 +34,16 @@ module BinaryTrees =
     let symmetric = function
         | Empty -> true
         | Node (_, l, r) -> mirror (l, r)
+
+    (*
+        4.04
+        Binary search trees (dictionaries).
+    *)
+    let rec addNode tree x =
+        match tree with
+        | Empty -> Node (x, Empty, Empty)
+        | Node (el, l, r) ->
+            if x < el then Node (el, addNode l x, r)
+            else Node (el, l, addNode r x)
+
+    let construct arr = List.fold addNode Empty arr
