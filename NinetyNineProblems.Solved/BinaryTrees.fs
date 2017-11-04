@@ -3,7 +3,7 @@ namespace NinetyNineProblems.Solved
 module BinaryTrees =
 
     type btree<'a> =
-        | Leaf of 'a
+        | Empty
         | Node of 'a * btree<'a> * btree<'a>
 
     (*
@@ -11,7 +11,7 @@ module BinaryTrees =
         Construct completely balanced binary trees.
     *)
     let rec cbalTree = function
-        | n when n < 2 -> Leaf 'x'
+        | n when n < 2 -> Node ('x', Empty, Empty)
         | n ->
             let reminded = n - 1
             Node (
@@ -25,12 +25,12 @@ module BinaryTrees =
         Symmetric binary trees.
     *)
     let rec mirror = function
-        | Leaf _, Leaf _ -> true
+        | Empty, Empty -> true
         | Node (_, l1, r1), Node (_, l2, r2) ->
             ((mirror (l1, l2)) && (mirror (r1, r2))) ||
             ((mirror (l1, r2)) && (mirror (r1, l2)))
         | _ -> false
 
     let symmetric = function
-        | Leaf _ -> true
+        | Empty -> true
         | Node (_, l, r) -> mirror (l, r)
