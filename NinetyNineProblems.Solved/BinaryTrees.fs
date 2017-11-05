@@ -16,7 +16,7 @@ module BinaryTrees =
         List.fold addRight acc l
 
     let rec cbalTree = function
-        | n when n < 2 -> [ Empty ]
+        | n when n < 1 -> [ Empty ]
         | n when n % 2 = 1 ->
             let b = cbalTree (n / 2)
             generateTrees b b []
@@ -51,3 +51,10 @@ module BinaryTrees =
             else Node (el, l, addNode r x)
 
     let construct arr = List.fold addNode Empty arr
+
+    (*
+        4.05
+        Apply the generate-and-test paradigm to construct all symmetric,
+        completely balanced binary trees with a given number of nodes.
+    *)
+    let symCbalTrees n = List.filter symmetric (cbalTree n)
