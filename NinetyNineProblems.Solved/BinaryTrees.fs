@@ -27,8 +27,7 @@ module BinaryTrees =
     let rec mirror = function
         | Empty, Empty -> true
         | Node (_, l1, r1), Node (_, l2, r2) ->
-            ((mirror (l1, l2)) && (mirror (r1, r2))) ||
-            ((mirror (l1, r2)) && (mirror (r1, l2)))
+            mirror (l1, r2) && mirror (r1, l2)
         | _ -> false
 
     let symmetric = function

@@ -39,6 +39,20 @@ let ``symmetric returns true for fully balanced trees`` n =
     Assert.True(symmetric (cbalTree n))
 
 [<Fact>]
+let ``symmetric returns true for correct symmetric tree`` () =
+    Assert.True(symmetric (Node ('x',
+            Node ('x', Node ('x', Empty, Empty), Empty),
+            Node ('x', Empty, Node ('x', Empty, Empty))
+        )))
+
+[<Fact>]
+let ``symmetric returns false for asymmetric tree`` () =
+    Assert.False(symmetric (Node ('x',
+            Node ('x', Node ('x', Empty, Empty), Empty),
+            Node ('x', Node ('x', Empty, Empty), Empty)
+        )))
+
+[<Fact>]
 let ``construct returns empty tree for empty array`` () =
     Assert.Equal(Empty, construct [])
 
