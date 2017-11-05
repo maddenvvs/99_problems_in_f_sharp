@@ -10,15 +10,20 @@ module BinaryTrees =
         4.02
         Construct completely balanced binary trees.
     *)
+    let generateTrees l r acc =
+        let addRight acc l =
+            List.fold (fun a r -> Node ('x', l, r) :: a) acc r
+        List.fold addRight acc l
+
     let rec cbalTree = function
-        | n when n < 2 -> Node ('x', Empty, Empty)
+        | n when n < 2 -> [ Empty ]
+        | n when n % 2 = 1 ->
+            let b = cbalTree (n / 2)
+            generateTrees b b []
         | n ->
-            let reminded = n - 1
-            Node (
-                'x',
-                cbalTree (reminded / 2),
-                cbalTree (reminded - reminded / 2)
-            )
+            let b1 = cbalTree (n / 2)
+            let b2 = cbalTree (n / 2 - 1)
+            generateTrees b1 b2 (generateTrees b2 b1 [])
 
     (*
         4.03
