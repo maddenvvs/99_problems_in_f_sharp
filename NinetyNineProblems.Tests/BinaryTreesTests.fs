@@ -74,3 +74,26 @@ let ``hbalTree generates three trees with height 2`` () =
 [<Fact>]
 let ``hbalTree generates fifteen trees with height 3`` () =
     Assert.Equal(15, List.length (hbalTree 3))
+
+[<Theory>]
+[<InlineData(1, 1)>]
+[<InlineData(2, 2)>]
+[<InlineData(3, 4)>]
+[<InlineData(4, 8)>]
+[<InlineData(5, 16)>]
+let ``minNodes returns minimum number of nodes in a height-balanced binary tree of height h`` h n =
+    Assert.Equal(n, minNodes h)
+
+[<Theory>]
+[<InlineData(1, 1)>]
+[<InlineData(2, 2)>]
+[<InlineData(3, 2)>]
+[<InlineData(4, 3)>]
+[<InlineData(5, 3)>]
+[<InlineData(7, 3)>]
+let ``maxHeight returns maximum height of a height-balanced binary tree with n nodes`` n h =
+    Assert.Equal(h, maxHeight n)
+
+[<Fact>]
+let ``symHbalTrees returns 1 for n = 15`` () =
+    Assert.Equal(1, List.length (symHbalTrees 15))

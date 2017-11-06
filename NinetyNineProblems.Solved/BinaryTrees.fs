@@ -1,5 +1,7 @@
 namespace NinetyNineProblems.Solved
 
+open System
+
 module BinaryTrees =
 
     type btree<'a> =
@@ -71,3 +73,28 @@ module BinaryTrees =
             let t2 = hbalTree (n - 2)
             let eq = generateTrees t1 t1 []
             generateTrees t1 t2 (generateTrees t2 t1 eq)
+
+    (*
+        4.07
+        Construct height-balanced binary trees with a given number of nodes.
+    *)
+    let minNodes = function
+        | h when h < 1 -> 0
+        | h -> 2.0 ** (double (h-1)) |> int
+
+    let maxHeight = function
+        | n when n < 1 -> 0
+        | n -> Math.Log(double (n+1), 2.0) |> ceil |> int
+
+    let rec countNodesIn = function
+        | Empty -> 0
+        | Node (_, l, r) -> 1 + (countNodesIn l) + (countNodesIn r)
+
+    let hasNodesEqual n tree =
+        countNodesIn tree = n
+
+    let symHbalTrees n =
+        n
+        |> maxHeight
+        |> hbalTree
+        |> List.filter (hasNodesEqual n)
