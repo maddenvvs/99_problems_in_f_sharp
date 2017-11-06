@@ -7,7 +7,7 @@ open NinetyNineProblems.Solved.BinaryTrees
 [<InlineData(0)>]
 [<InlineData(-100)>]
 let ``cbalTree generates one-node tree for n < 1`` n =
-    Assert.True([ Empty ] = cbalTree n)
+    Assert.Equal<btree<'a> list>([ Empty ], cbalTree n)
 
 [<Fact>]
 let ``symmetric returns true if tree is one leaf only`` () =
@@ -54,8 +54,23 @@ let ``construct works correctly for predefined example 3`` () =
 [<InlineData(4)>]
 [<InlineData(30)>]
 let ``symCbalTrees generates no symmetric balanced trees for even n`` n =
-    Assert.True([] = symCbalTrees n)
+    Assert.Equal<btree<'a> list>([], symCbalTrees n)
 
 [<Fact>]
 let ``symCbalTrees generates 256 trees for n = 57`` () =
     Assert.Equal(256, List.length (symCbalTrees 57))
+
+[<Theory>]
+[<InlineData(0)>]
+[<InlineData(-1)>]
+[<InlineData(-99)>]
+let ``hbalTree generates list with empty tree for n < 1`` n =
+    Assert.Equal<btree<'a> list>([Empty], hbalTree n)
+
+[<Fact>]
+let ``hbalTree generates three trees with height 2`` () =
+    Assert.Equal(3, List.length (hbalTree 2))
+
+[<Fact>]
+let ``hbalTree generates fifteen trees with height 3`` () =
+    Assert.Equal(15, List.length (hbalTree 3))

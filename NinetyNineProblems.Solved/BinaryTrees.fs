@@ -58,3 +58,16 @@ module BinaryTrees =
         completely balanced binary trees with a given number of nodes.
     *)
     let symCbalTrees n = List.filter symmetric (cbalTree n)
+
+    (*
+        4.06
+        Construct height-balanced binary trees.
+    *)
+    let rec hbalTree = function
+        | n when n < 1 -> [ Empty ]
+        | 1 -> [ Node ('x', Empty, Empty) ]
+        | n ->
+            let t1 = hbalTree (n - 1)
+            let t2 = hbalTree (n - 2)
+            let eq = generateTrees t1 t1 []
+            generateTrees t1 t2 (generateTrees t2 t1 eq)
