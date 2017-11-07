@@ -107,3 +107,14 @@ module BinaryTrees =
         | Empty -> 0
         | Node(_, Empty, Empty) -> 1
         | Node(_, l, r) -> countLeaves l + countLeaves r
+
+    (*
+        4.09
+        Collect the leaves of a binary tree in a list.
+    *)
+    let leaves tree =
+        let rec aux acc = function
+            | Empty -> []
+            | Node(_, Empty, Empty) as n -> n :: acc
+            | Node(_, l, r) -> aux (aux acc l) r
+        aux [] tree
