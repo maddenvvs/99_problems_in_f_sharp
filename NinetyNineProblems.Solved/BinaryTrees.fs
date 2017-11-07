@@ -129,3 +129,17 @@ module BinaryTrees =
             | Node(_, Empty, Empty) -> acc
             | Node(_, l, r) as n -> aux (aux (n :: acc) l) r
         aux [] tree
+
+    (*
+        4.11
+        Collect the nodes at a given level in a list.
+    *)
+    let atlevel k tree =
+        if k < 1 then []
+        else
+            let rec aux m acc = function
+                | Empty -> acc
+                | Node(_, l, r) as n ->
+                    if m = k then (n :: acc)
+                    else aux (m+1) (aux (m+1) acc l) r
+            aux 1 [] tree
