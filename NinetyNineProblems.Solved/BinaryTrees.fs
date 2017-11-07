@@ -98,3 +98,12 @@ module BinaryTrees =
         |> maxHeight
         |> hbalTree
         |> List.filter (hasNodesEqual n)
+
+    (*
+        4.08
+        Count the leaves of a binary tree.
+    *)
+    let rec countLeaves = function
+        | Empty -> 0
+        | Node(_, Empty, Empty) -> 1
+        | Node(_, l, r) -> countLeaves l + countLeaves r
