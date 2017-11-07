@@ -118,3 +118,14 @@ module BinaryTrees =
             | Node(_, Empty, Empty) as n -> n :: acc
             | Node(_, l, r) -> aux (aux acc l) r
         aux [] tree
+
+    (*
+        4.10
+        Collect the internal nodes of a binary tree in a list.
+    *)
+    let internals tree =
+        let rec aux acc = function
+            | Empty -> []
+            | Node(_, Empty, Empty) -> acc
+            | Node(_, l, r) as n -> aux (aux (n :: acc) l) r
+        aux [] tree
