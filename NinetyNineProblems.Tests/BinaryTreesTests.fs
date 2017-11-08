@@ -97,3 +97,26 @@ let ``maxHeight returns maximum height of a height-balanced binary tree with n n
 [<Fact>]
 let ``symHbalTrees returns 1 for n = 15`` () =
     Assert.Equal(1, List.length (symHbalTrees 15))
+
+[<Theory>]
+[<InlineData(0)>]
+[<InlineData(-1)>]
+[<InlineData(-99)>]
+let ``completeBinaryTree returns empty tree for n < 1`` n =
+    Assert.Equal(Empty, completeBinaryTree n)
+
+[<Fact>]
+let ``completeBinaryTree returns one node tree for n = 1`` () =
+    Assert.Equal(Node('x', Empty, Empty), completeBinaryTree 1)
+
+[<Fact>]
+let ``completeBinaryTree returns two node tree for n = 2`` () =
+    Assert.Equal(Node('x', Node('x', Empty, Empty), Empty),
+        completeBinaryTree 2)
+
+[<Fact>]
+let ``completeBinaryTree returns six node tree for n = 6`` () =
+    Assert.Equal(Node('x',
+            Node('x', Node('x', Empty, Empty), Node('x', Empty, Empty)),
+            Node('x', Node('x', Empty, Empty), Empty)),
+        completeBinaryTree 6)

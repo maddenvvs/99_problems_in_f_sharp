@@ -143,3 +143,13 @@ module BinaryTrees =
                     if m = k then (n :: acc)
                     else aux (m+1) (aux (m+1) acc l) r
             aux 1 [] tree
+
+    (*
+        4.12
+        Construct a complete binary tree.
+    *)
+    let completeBinaryTree n =
+        let rec aux = function
+            | k when k > n -> Empty
+            | k -> Node ('x', (aux (2*k)), (aux (2*k+1)))
+        aux 1
