@@ -153,3 +153,16 @@ module BinaryTrees =
             | k when k > n -> Empty
             | k -> Node ('x', (aux (2*k)), (aux (2*k+1)))
         aux 1
+
+    (*
+        4.13
+        Layout a binary tree (1).
+    *)
+    let layoutTree1 tree =
+        let rec aux depth xPos = function
+            | Empty -> (Empty, xPos)
+            | Node (v, l, r) ->
+                let (l', lx) = aux (depth + 1) xPos l
+                let (r', rx) = aux (depth + 1) (lx + 1) r
+                (Node ((v, lx, depth), l',r'), rx)
+        fst (aux 1 1 tree)
