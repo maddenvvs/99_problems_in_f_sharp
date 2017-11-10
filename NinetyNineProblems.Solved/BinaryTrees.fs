@@ -166,3 +166,30 @@ module BinaryTrees =
                 let (r', rx) = aux (depth + 1) (lx + 1) r
                 (Node ((v, lx, depth), l',r'), rx)
         fst (aux 1 1 tree)
+
+    (*
+        4.14
+        Layout a binary tree (2).
+    *)
+    let layoutTree2 tree =
+        let rec height = function
+            | Empty -> 0
+            | Node (_,l,r) -> 1 + max (height l) (height r)
+
+        let treeHeight = height tree
+
+        let rec findLeft depth = function
+            | Empty -> treeHeight - depth
+            | Node (_, l, _) -> findLeft (depth + 1) l
+
+        let tDst = (1 <<< (findLeft 0 tree)) - 1
+
+        let rec layout depth xRoot = function
+            | Empty -> Empty
+            | Node (x, l, r) ->
+                let spacing = 1 <<< (treeHeight - depth - 1)
+                let l' = layout (depth + 1) (xRoot - spacing) l
+                let r' = layout (depth + 1) (xRoot + spacing) r
+                Node((x, xRoot, depth), l',r')
+
+        layout 1 ((1 <<< (treeHeight - 1)) - tDst) tree
