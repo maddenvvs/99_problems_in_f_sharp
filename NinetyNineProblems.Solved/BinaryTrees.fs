@@ -151,7 +151,7 @@ module BinaryTrees =
     let completeBinaryTree n =
         let rec aux = function
             | k when k > n -> Empty
-            | k -> Node ('x', (aux (2*k)), (aux (2*k+1)))
+            | k -> Node ('x', (aux (2 * k)), (aux (2 * k + 1)))
         aux 1
 
     (*
