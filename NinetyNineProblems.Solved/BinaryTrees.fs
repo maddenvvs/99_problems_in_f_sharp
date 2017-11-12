@@ -141,7 +141,7 @@ module BinaryTrees =
                 | Empty -> acc
                 | Node(_, l, r) as n ->
                     if m = k then (n :: acc)
-                    else aux (m+1) (aux (m+1) acc l) r
+                    else aux (m + 1) (aux (m + 1) acc l) r
             aux 1 [] tree
 
     (*
