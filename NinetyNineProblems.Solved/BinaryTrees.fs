@@ -193,3 +193,9 @@ module BinaryTrees =
                 Node((x, xRoot, depth), l',r')
 
         layout 1 ((1 <<< (treeHeight - 1)) - tDst) tree
+
+    (*
+        4.15
+        Layout a binary tree (3).
+    *)
+    let layoutTree3 tree = failwith "Not implemented"
