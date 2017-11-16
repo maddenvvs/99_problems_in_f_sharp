@@ -199,3 +199,21 @@ module BinaryTrees =
         Layout a binary tree (3).
     *)
     let layoutTree3 tree = failwith "Not implemented"
+
+    (*
+        4.16
+        A string representation of binary trees.
+    *)
+    let ``solution for 4.16`` () = failwith "Not implemented"
+
+    (*
+        4.17
+        Preorder and inorder sequences of binary trees.
+    *)
+    let ``solution for 4.17`` () = failwith "Not implemented"
+
+    (*
+        4.18
+        Dotstring representation of binary trees.
+    *)
+    let ``solution for 4.18`` () = failwith "Not implemented"
