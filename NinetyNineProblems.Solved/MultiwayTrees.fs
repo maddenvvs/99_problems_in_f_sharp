@@ -28,7 +28,16 @@ module MultiwayTrees =
         5.04
         Determine the internal path length of a tree.
     *)
-    let rec iplAux len (T(_, sub)) =
-        List.fold_left (fun sum t -> sum + iplAux (len + 1) t) len sub
+    let rec iplAux len (MTree(_, sub)) =
+        List.fold (fun sum t -> sum + iplAux (len + 1) t) len sub
 
     let ipl t = iplAux 0 t
+
+    (*
+        5.05
+        Construct the bottom-up order sequence of the tree nodes.
+    *)
+    let rec prepend_bottom_up (MTree(c, sub)) lst =
+        List.foldBack (fun t l -> prepend_bottom_up t l) sub (c :: lst)
+
+    let bottom_up t = prepend_bottom_up t []
