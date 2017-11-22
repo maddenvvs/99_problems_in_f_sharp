@@ -41,3 +41,9 @@ module MultiwayTrees =
         List.foldBack (fun t l -> prepend_bottom_up t l) sub (c :: lst)
 
     let bottom_up t = prepend_bottom_up t []
+
+    (*
+        5.06
+        Lisp-like tree representation.
+    *)
+    let tree_ltl mtree = failwith "Not implemented"
